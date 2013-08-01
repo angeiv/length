@@ -1,4 +1,5 @@
 #include<iostream>
+#include<string.h>
 #include<fstream>
 using namespace std;
 
@@ -9,6 +10,8 @@ void write(); //写入到文件
 
 int main()
 {
+	read();
+	write();
 	return 0;
 }
 
@@ -25,8 +28,10 @@ void read()
 	}
   
 	//将文件前6行读入到数组中
-	for(int i = 0;i <= 6;i++)
+	for(int i = 0;i < 6;i++)
 	{
+		//此处存在错误
+
 		infile >> num; //读取第一个数字
 		infile >> name[i]; //读取单位名字
 		infile >> str; //读取不需要的字符，“=”
@@ -41,6 +46,7 @@ void read()
 
 void write()
 {
+
 	ofstream outfile("output.txt");
 	
 	if(!outfile)
@@ -49,10 +55,12 @@ void write()
 		exit(1);
 	}
 	
-	outfile.put("447407567@qq.com\n"); //第1行是您在渣打编程马拉松官网上报名时的注册邮箱
-	outfile.put("\n"); //第2行是空行
-	
-	//输出10个结果（暂缺）
+	//输出结果
+	outfile << "447407567@qq.com" << endl; //第1行是您在渣打编程马拉松官网上报名时的注
+	outfile << endl; //第2行是空行
+
+	//输出计算结果（暂缺）
+	//outfile << zhl[0] << endl;
 	
 	outfile.close();
 }
