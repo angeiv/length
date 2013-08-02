@@ -80,28 +80,7 @@ void read()
 
 			cout<<zf<<endl;
 			result[l] += tmp * zhl[isUnit(cal)-1] *zf;
-			//优化代码
-		/*	switch(isUnit(cal))
-			{
-			case 1:
-				result[l] += tmp * zhl[0] * zf;
-				break;
-			case 2:
-				result[l] += tmp * zhl[1] * zf;
-				break;
-			case 3:
-				result[l] += tmp * zhl[2] * zf;
-				break;
-			case 4:
-				result[l] += tmp * zhl[3] * zf;
-				break;
-			case 5:
-				result[l] += tmp * zhl[4] * zf;
-				break;
-			case 6:
-				result[l] += tmp * zhl[5] * zf;
-				break;
-			} */
+		
 			continue;
 		}
 		if(isOperator(cal))
