@@ -6,27 +6,27 @@
 
 using namespace std;
 
-char name[6][8]; //å„ä¸ªå•ä½çš„åç§°
-float zhl[6]; //å„ä¸ªå•ä½çš„è½¬æ¢ç‡å­˜å‚¨åœ¨æ­¤æ•°ç»„ä¸­
-float result[10] ; //10ä¸ªç»“æœ
-void read(); //ä»æ–‡ä»¶è¯»å…¥å¹¶è®¡ç®—
-void write(); //å†™å…¥åˆ°æ–‡ä»¶
-int isOperator(string str); //åˆ¤æ–­æ˜¯å¦æ˜¯è¿ç®—ç¬¦ï¼ŒåŠ ä¸º7ï¼Œå‡ä¸º8
-int isUnit(string str); //åˆ¤æ–­å•ä½
-float str2float(string str);//stringè½¬float
+char name[6][8]; //¸÷¸öµ¥Î»µÄÃû³Æ
+float zhl[6]; //¸÷¸öµ¥Î»µÄ×ª»»ÂÊ´æ´¢ÔÚ´ËÊı×éÖĞ
+float result[10] ; //10¸ö½á¹û
+void read(); //´ÓÎÄ¼ş¶ÁÈë²¢¼ÆËã
+void write(); //Ğ´Èëµ½ÎÄ¼ş
+int isOperator(string str); //ÅĞ¶ÏÊÇ·ñÊÇÔËËã·û£¬¼ÓÎª7£¬¼õÎª8
+int isUnit(string str); //ÅĞ¶Ïµ¥Î»
+float str2float(string str);//string×ªfloat
 
 int main()
 {
-	read(); //è¯»å–æ•°æ®
-	write(); //å†™å…¥æ•°æ®
+	read(); //¶ÁÈ¡Êı¾İ
+	write(); //Ğ´ÈëÊı¾İ
 
 	return 0;
 }
 
 void read()
 {
-	int num; //è¯»å–ä¸éœ€è¦çš„æ•°å­—
-	char str[10]; //è¯»å–ä¸éœ€è¦çš„å­—ç¬¦ä¸²
+	int num; //¶ÁÈ¡²»ĞèÒªµÄÊı×Ö
+	char str[10]; //¶ÁÈ¡²»ĞèÒªµÄ×Ö·û´®
  	ifstream infile("input.txt");
   
  	if(!infile)
@@ -35,40 +35,40 @@ void read()
 		exit(1);
 	}
   
-	//å°†æ–‡ä»¶å‰6è¡Œè¯»å…¥åˆ°æ•°ç»„ä¸­
+	//½«ÎÄ¼şÇ°6ĞĞ¶ÁÈëµ½Êı×éÖĞ
 	for(int i = 0;i < 6;i++)
 	{
-		infile >> num; //è¯»å–ç¬¬ä¸€ä¸ªæ•°å­—
-		infile >> name[i]; //è¯»å–å•ä½åå­—
-		infile >> str; //è¯»å–ä¸éœ€è¦çš„å­—ç¬¦ï¼Œâ€œ=â€
-		infile >> zhl[i]; //å•ä½è½¬æ¢ç‡
-		infile >> str; //è¯»å–ä¸éœ€è¦çš„å­—ç¬¦ï¼Œâ€œmâ€
+		infile >> num; //¶ÁÈ¡µÚÒ»¸öÊı×Ö
+		infile >> name[i]; //¶ÁÈ¡µ¥Î»Ãû×Ö
+		infile >> str; //¶ÁÈ¡²»ĞèÒªµÄ×Ö·û£¬¡°=¡±
+		infile >> zhl[i]; //µ¥Î»×ª»»ÂÊ
+		infile >> str; //¶ÁÈ¡²»ĞèÒªµÄ×Ö·û£¬¡°m¡±
 	}
 	
-	//è¯»å–éœ€è¦è®¡ç®—çš„éƒ¨åˆ†ï¼Œå¹¶åŠ ä»¥è®¡ç®—
-	float tmp; //è®¡ç®—å­˜å‚¨æ•°å­—
-	string cal; //è¦è®¡ç®—çš„å­—ç¬¦ä¸²ï¼ˆéƒ¨åˆ†ï¼‰
-	string line; //è¦è®¡ç®—çš„å­—ç¬¦ä¸²ï¼ˆè¡Œï¼‰
-	int statius1 = 0,statius2 = 0; //æ˜¯å¦æ¢è¡Œçš„æ ‡å¿—ï¼ˆè¿ç®—ç¬¦ï¼Œå•ä½ï¼‰
-	int l=0; //ç¬¬å‡ è¡Œ
-	int zf=1; //åˆ¤æ–­åŠ å‡
+	//¶ÁÈ¡ĞèÒª¼ÆËãµÄ²¿·Ö£¬²¢¼ÓÒÔ¼ÆËã
+	float tmp; //¼ÆËã´æ´¢Êı×Ö
+	string cal; //Òª¼ÆËãµÄ×Ö·û´®£¨²¿·Ö£©
+	string line; //Òª¼ÆËãµÄ×Ö·û´®£¨ĞĞ£©
+	int statius1 = 0,statius2 = 0; //ÊÇ·ñ»»ĞĞµÄ±êÖ¾£¨ÔËËã·û£¬µ¥Î»£©
+	int l=0; //µÚ¼¸ĞĞ
+	int zf=1; //ÅĞ¶Ï¼Ó¼õ
 	
 	while(!(infile.eof()))
 	{
 
 		infile >> cal;
 
-		if(!isUnit(cal) && !isOperator(cal)) //åˆ¤æ–­æ˜¯å¦ä¸ºæ•°å­—
+		if(!isUnit(cal) && !isOperator(cal)) //ÅĞ¶ÏÊÇ·ñÎªÊı×Ö
 		{
 			statius1 = statius2;
 			statius2 = 1;
 
 			tmp = str2float(cal);
 
-			if(statius1==2 && statius2==1) //æ¢è¡Œæ ‡å¿—ï¼ˆå•ä½2ï¼Œæ•°å­—1ï¼‰
+			if(statius1==2 && statius2==1) //»»ĞĞ±êÖ¾£¨µ¥Î»2£¬Êı×Ö1£©
 			{
 				l++;
-				zf=1; //æ¢è¡Œåç¬¦å·è¦é‡ç½®
+				zf=1; //»»ĞĞºó·ûºÅÒªÖØÖÃ
 			}
 			continue;
 		}
@@ -80,7 +80,28 @@ void read()
 
 			cout<<zf<<endl;
 			result[l] += tmp * zhl[isUnit(cal)-1] *zf;
-		
+			//ÓÅ»¯´úÂë
+		/*	switch(isUnit(cal))
+			{
+			case 1:
+				result[l] += tmp * zhl[0] * zf;
+				break;
+			case 2:
+				result[l] += tmp * zhl[1] * zf;
+				break;
+			case 3:
+				result[l] += tmp * zhl[2] * zf;
+				break;
+			case 4:
+				result[l] += tmp * zhl[3] * zf;
+				break;
+			case 5:
+				result[l] += tmp * zhl[4] * zf;
+				break;
+			case 6:
+				result[l] += tmp * zhl[5] * zf;
+				break;
+			} */
 			continue;
 		}
 		if(isOperator(cal))
@@ -110,15 +131,15 @@ void write()
 		exit(1);
 	}
 	
-	//è¾“å‡ºç»“æœ
-	outfile << "447407567@qq.com" << endl; //ç¬¬1è¡Œæ˜¯æ‚¨åœ¨æ¸£æ‰“ç¼–ç¨‹é©¬æ‹‰æ¾å®˜ç½‘ä¸ŠæŠ¥åæ—¶çš„æ³¨å†Œé‚®ç®±
-	//ç¬¬2è¡Œæ˜¯ç©ºè¡Œ
+	//Êä³ö½á¹û
+	outfile << "447407567@qq.com" << endl; //µÚ1ĞĞÊÇÄúÔÚÔü´ò±à³ÌÂíÀ­ËÉ¹ÙÍøÉÏ±¨ÃûÊ±µÄ×¢²áÓÊÏä
+	//µÚ2ĞĞÊÇ¿ÕĞĞ
 
-	//è¾“å‡ºè®¡ç®—ç»“æœ
+	//Êä³ö¼ÆËã½á¹û
 	for(int i = 0 ; i < 10 ; i++)
-		outfile << endl <<setiosflags(ios::fixed)<<setprecision(2)<< result[i] << " m"; //ä»ä¸Šä¸€è¡Œå¤„è¾“å‡ºï¼Œæœ¬æ¬¡è¾“å‡ºä¸æ¢è¡Œ
+		outfile << endl <<setiosflags(ios::fixed)<<setprecision(2)<< result[i] << " m"; //´ÓÉÏÒ»ĞĞ´¦Êä³ö£¬±¾´ÎÊä³ö²»»»ĞĞ
 	
-	//æœ€åä¸€è¡Œä¸éœ€è¦æ¢è¡Œ
+	//×îºóÒ»ĞĞ²»ĞèÒª»»ĞĞ
 
 	outfile.close();
 }
