@@ -13,7 +13,7 @@ void read(); //从文件读入并计算
 void write(); //写入到文件
 int isOperator(string str); //判断是否是运算符，加为7，减为8
 int isUnit(string str); //判断单位
-float str2float(string str);//string转float
+float str2float(string str); //string转float
 
 int main()
 {
@@ -50,10 +50,10 @@ void read()
 	string cal; //要计算的字符串（部分）
 	string line; //要计算的字符串（行）
 	int statius1 = 0,statius2 = 0; //是否换行的标志（运算符，单位）
-	int l=0; //第几行
-	int zf=1; //判断加减
+	int l = 0; //第几行
+	int zf = 1; //判断加减
 	
-	while(!(infile.eof()))
+	while( !(infile.eof()) )
 	{
 
 		infile >> cal;
@@ -65,7 +65,7 @@ void read()
 
 			tmp = str2float(cal);
 
-			if(statius1==2 && statius2==1) //换行标志（单位2，数字1）
+			if(statius1 == 2 && statius2 == 1) //换行标志（单位2，数字1）
 			{
 				l++;
 				zf=1; //换行后符号要重置
@@ -78,7 +78,6 @@ void read()
 			statius1 = statius2;
 			statius2 = 2;
 
-			cout<<zf<<endl;
 			result[l] += tmp * zhl[isUnit(cal)-1] *zf;
 			continue;
 		}
@@ -88,9 +87,9 @@ void read()
 			statius2 = 3;
 
 			if(isOperator(cal)-7)
-				zf=-1;
+				zf = -1;
 			else
-				zf=1;
+				zf = 1;
 			continue;
 		}
 	}
@@ -115,7 +114,7 @@ void write()
 
 	//输出计算结果
 	for(int i = 0 ; i < 10 ; i++)
-		outfile << endl <<setiosflags(ios::fixed)<<setprecision(2)<< result[i] << " m"; //从上一行处输出，本次输出不换行
+		outfile << endl << setiosflags(ios::fixed) << setprecision(2) << result[i] << " m"; //从上一行处输出，本次输出不换行
 	
 	//最后一行不需要换行
 
@@ -124,26 +123,26 @@ void write()
 
 int isOperator(string str)
 {
-	if(str=="+")
+	if(str == "+")
 		return 7;
-	if(str=="-")
+	if(str == "-")
 		return 8;
 	return 0;
 }
 
 int isUnit(string str)
 {
-	if((str=="mile") || (str=="miles"))
+	if((str == "mile") || (str == "miles"))
 		return 1;
-	if((str=="yard") || (str=="yards"))
+	if((str == "yard") || (str == "yards"))
 		return 2;
-	if((str=="inch") || (str=="inches"))
+	if((str == "inch") || (str == "inches"))
 		return 3;
-	if((str=="foot") || (str=="feet"))
+	if((str == "foot") || (str == "feet"))
 		return 4;
-	if((str=="fath") || (str=="faths"))
+	if((str == "fath") || (str == "faths"))
 		return 5;
-	if((str=="furlong") || (str=="furlongs"))
+	if((str == "furlong") || (str == "furlongs"))
 		return 6;
 	else return 0;
 }
